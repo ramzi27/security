@@ -1,30 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth/auth.service';
+
+
+const USERNAME = 'ramzi';
+const PASSWORD = '123456789';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username= '';
-  password= '';
-  constructor(private router: Router) { }
-    email = new FormControl('', [Validators.required, Validators.email]);
 
-    getErrorMessage() {
-        return this.email.hasError('required') ? 'You must enter a value' :
-            this.email.hasError('email') ? 'Not a valid email' :
-                '';
+    @ViewChild('f')
+    ngForm: NgForm;
+    @ViewChild('username')
+    username: HTMLInputElement;
+    @ViewChild('password')
+    password: HTMLInputElement;
+    isError = false;
+
+    constructor(private router: Router, private authService: AuthService) {
     }
-    ngOnInit() {
 
+    ngOnInit() {
     }
 
     login() {
-      if(this.username === 'ramzi' && this.password === '123456789'){
-          this.router.navigate(['home']);
-      }
+        const user = this.username.value;
+        const pass = this.password.value;
+        if (user === USERNAME && pass === PASSWORD) {
+            this.authService.login();
+            this.ngForm.reset();
+            this.router.navigate(['/home']);
+            this.isError = false;
+        } else {
+            this.isError = true;
+            this.ngForm.reset(this.ngForm.value);
+        }
     }
 }

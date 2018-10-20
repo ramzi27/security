@@ -1,29 +1,50 @@
-<mat-card class="justify-content-center align-items-center flex-md-row" >
-    <mat-card-header>
-        <mat-card-title>
-            Login
-        </mat-card-title>
-    </mat-card-header>
-    <img height="72px" width="72px" src="../../assets/lock-icon.png">
-    <mat-card-content>
-        <form>
-            <div>
-                <mat-form-field>
-                    <mat-label>Username</mat-label>
-                    <input name = "username" matInput placeholder="Enter your Username" [type]="'text'" required [(ngModel)]="username">
-                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input name="password" matInput placeholder="Enter your Password" [type]="'password'" required [(ngModel)]="password">
-                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-            </div>
-        </form>
-    </mat-card-content>
-    <mat-card-actions align="start">
-            <button mat-button class="btn-primary" (click)="login()">Log In</button>
-    </mat-card-actions>
-</mat-card>
+<div class="center-content h-100">
+    <h2 class="text-center text-primary">Security System</h2>
+    <mat-card class="center-content mb-5">
+        <mat-card-header class="w-100 bg-primary text-center d-block">
+            <mat-card-title>
+                <h3 class="text-white">Login</h3>
+            </mat-card-title>
+        </mat-card-header>
+        <img class="mt-lg-1" src="../../assets/security.png">
+        <mat-card-content>
+            <form (ngSubmit)="login()" #f="ngForm">
+                <div>
+                    <mat-form-field class="custom-width">
+                        <mat-icon matPrefix class="pr-3">account_circle</mat-icon>
+                        <input class="login-input"
+                               #username="ngModel"
+                               name="username"
+                               matInput
+                               placeholder="Enter your Username"
+                               [type]="'text'"
+                               required
+                               ngModel>
+                        <mat-error *ngIf="  username.untouched">username is invalid!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="custom-width">
+                        <mat-icon matPrefix class="pr-3">lock</mat-icon>
+                        <input class="login-input"
+                               #password="ngModel"
+                               name="password"
+                               matInput
+                               placeholder="Enter your Password"
+                               [type]="'password'"
+                               required
+                               ngModel>
+                        <mat-error *ngIf="password.untouched">password is invalid!</mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions class="text-center">
+                    <button [disabled]="!f.valid" type="submit" class="btn btn-primary w-75 h-auto">Log In</button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+        <div *ngIf="f.untouched && isError" class="w-50 bg-danger text-white card-footer text-center">
+            <mat-icon>error</mat-icon>
+            Access Denied
+        </div>
+    </mat-card>
+</div>

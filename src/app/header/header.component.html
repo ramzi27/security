@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <mat-toolbar-row class="d-inline-flex">
+        <span class="navbar-brand">
+            <a href="/home">
+                <img class="brand-image" src="../../assets/security.png"/>
+            </a>
+        </span>
+        <span mat-button class="ml-auto dropdown-toggle arrow" [matMenuTriggerFor]="menu">
+            Log Out
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item class="logout" (click)="logOut()">
+                    <span class="logout">Log Out</span>
+                    <mat-icon>exit_to_app</mat-icon>
+                </button>
+            </mat-menu>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
