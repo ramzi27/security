@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {MatDialogRef} from "@angular/material";
-import {FileUpload, MessageService} from "primeng/primeng";
+import {FileUpload} from "primeng/primeng";
 
 @Component({
   selector: 'add-user-dialog',
@@ -16,19 +16,25 @@ export class AddUserDialog implements OnInit {
     ngForm: NgForm;
     @ViewChild('fileUploader')
     fileUploader: FileUpload;
-  constructor(public dialogRef: MatDialogRef<AddUserDialog>,private messageService: MessageService) { }
+    isDone = false;
+  constructor(public dialogRef: MatDialogRef<AddUserDialog>) { }
 
   ngOnInit() {
   }
 
   register() {
     const {type,date,name,secretWord} = this.ngForm.controls;
-    this.messageService.add({key: "key0", severity: 'success', summary: 'User Added' , detail: 'User Was Added Successfully'})
+    this.isDone = true;
+    const id=setTimeout(()=>{
+        this.isDone = false;
+        clearTimeout(id);
+        this.ngForm.reset();
+    },30000);
   }
 
     closeDialog() {
         this.dialogRef.close();
-        this.messageService.clear();
+
     }
 
     getUploadUrl() {
