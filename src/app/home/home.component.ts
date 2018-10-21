@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material";
+import {AddUserDialog} from "../add-user/add-user-dialog.component";
 
 @Component({
     selector: 'app-home',
@@ -12,11 +14,14 @@ export class HomeComponent implements OnInit {
     displayedColumns: string[] = ['name', 'age'];
     data = [{name: 'ramzi', age: 18}, {name: 'ramsdcvzi', age: 100}, {name: 'ramasdzi', age: 18}, {name: 'sam', age: 18}];
 
-    constructor() {
+    constructor(public dialog: MatDialog) {
     }
 
     ngOnInit() {
     }
 
+    openAddUserDialog() {
+        this.dialog.open(AddUserDialog);
+    }
 
 }

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     @ViewChild('password')
     password: HTMLInputElement;
     isError = false;
+    hidePassword = true;
 
     constructor(private router: Router, private authService: AuthService) {
     }

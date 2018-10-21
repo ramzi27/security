@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
     MatButtonModule,
-    MatCardModule,
+    MatCardModule, MatDatepickerModule, MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
+    MatMenuModule, MatNativeDateModule, MatProgressBarModule,
+    MatProgressSpinnerModule, MatSelectModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule
@@ -23,6 +23,9 @@ import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {TabsComponent} from './home/tabs/tabs.component';
 import {LoginComponent} from './login/login.component';
+import { AddUserDialog } from './add-user/add-user-dialog.component';
+import {FileUploadModule, MessageService} from "primeng/primeng";
+import {ToastModule} from "primeng/toast";
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -36,6 +39,7 @@ const Routes: Routes = [
         HeaderComponent,
         HomeComponent,
         TabsComponent,
+        AddUserDialog,
     ],
     imports: [
         BrowserModule,
@@ -51,10 +55,18 @@ const Routes: Routes = [
         MatProgressSpinnerModule,
         MatMenuModule,
         MatTabsModule,
-        MatTableModule
+        MatTableModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatDialogModule,
+        FileUploadModule,
+        MatProgressBarModule,
+        ToastModule
     ],
-    providers: [Guards, AuthService],
-    bootstrap: [AppComponent]
+    providers: [Guards, AuthService,MessageService],
+    bootstrap: [AppComponent],
+    entryComponents: [AddUserDialog]
 })
 export class AppModule {
 }
