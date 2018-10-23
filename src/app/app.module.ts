@@ -5,6 +5,7 @@ import {
     MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -21,7 +22,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {FileUploadModule} from 'primeng/primeng';
-import {TableModule} from 'primeng/table';
 import {AddUserComponent} from './add-user/add-user.component';
 
 import {AppComponent} from './app.component';
@@ -68,7 +68,7 @@ const Routes: Routes = [
         MatDialogModule,
         FileUploadModule,
         MatProgressBarModule,
-        TableModule
+        MatExpansionModule
     ],
     providers: [Guards, AuthService],
     bootstrap: [AppComponent],
