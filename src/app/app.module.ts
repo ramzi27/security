@@ -5,6 +5,7 @@ import {
     MatCardModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
@@ -68,7 +69,8 @@ const Routes: Routes = [
         MatDialogModule,
         FileUploadModule,
         MatProgressBarModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatDividerModule
     ],
     providers: [Guards, AuthService],
     bootstrap: [AppComponent],

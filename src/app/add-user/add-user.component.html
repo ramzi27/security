@@ -44,6 +44,7 @@
                                              [disabled]="f.controls.name.invalid">
                             <mat-expansion-panel-header>
                                 Upload Image
+                                <mat-icon>attachment</mat-icon>
                             </mat-expansion-panel-header>
                             <div *ngIf="showUpload">
                                 <p-fileUpload multiple="true" name="file" [url]="getUploadUrl()" accept="image/*"
