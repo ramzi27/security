@@ -8,7 +8,7 @@
         <span mat-button class="ml-auto dropdown-toggle arrow" [matMenuTriggerFor]="menu">
             Log Out
             <mat-menu #menu="matMenu">
-                <button mat-menu-item class="logout" (click)="logOut()">
+                <button mat-menu-item class="logout" (click)="logOut()" class="disable-focus">
                     <span class="logout">Log Out</span>
                     <mat-icon>exit_to_app</mat-icon>
                 </button>

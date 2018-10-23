@@ -32,10 +32,14 @@ export class LoginComponent implements OnInit {
     login() {
         const user = this.username.value;
         const pass = this.password.value;
+        const id = setTimeout(() => {
+            this.ngForm.reset();
+            this.isError = false;
+            clearTimeout(id);
+        }, 30000);
         if (user === USERNAME && pass === PASSWORD) {
             this.authService.login();
             this.ngForm.reset();
-            this.router.navigate(['/home']);
             this.isError = false;
         } else {
             this.isError = true;

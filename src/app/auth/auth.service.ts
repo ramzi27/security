@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -6,15 +7,17 @@ import {Injectable} from '@angular/core';
 export class AuthService {
     isLoggedIn = false;
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     public login() {
         this.isLoggedIn = true;
+        this.router.navigate(['/home']);
     }
 
     public logOut() {
         this.isLoggedIn = false;
+        this.router.navigate(['/login']);
     }
 
     public checkLogin() {

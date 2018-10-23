@@ -2,12 +2,17 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
     MatButtonModule,
-    MatCardModule, MatDatepickerModule, MatDialogModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatMenuModule, MatNativeDateModule, MatProgressBarModule,
-    MatProgressSpinnerModule, MatSelectModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule
@@ -15,6 +20,9 @@ import {
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
+import {FileUploadModule} from 'primeng/primeng';
+import {TableModule} from 'primeng/table';
+import {AddUserComponent} from './add-user/add-user.component';
 
 import {AppComponent} from './app.component';
 import {AuthService} from './auth/auth.service';
@@ -23,13 +31,11 @@ import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {TabsComponent} from './home/tabs/tabs.component';
 import {LoginComponent} from './login/login.component';
-import { AddUserDialog } from './add-user/add-user-dialog.component';
-import {FileUploadModule, MessageService} from "primeng/primeng";
-import {ToastModule} from "primeng/toast";
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
-    {path: 'home', component: HomeComponent, canActivate: [Guards]}
+    {path: 'home', component: HomeComponent, canActivate: [Guards]},
+    {path: 'add-user', component: AddUserComponent, canActivate: [Guards]}
 ];
 
 @NgModule({
@@ -39,7 +45,7 @@ const Routes: Routes = [
         HeaderComponent,
         HomeComponent,
         TabsComponent,
-        AddUserDialog,
+        AddUserComponent,
     ],
     imports: [
         BrowserModule,
@@ -62,11 +68,10 @@ const Routes: Routes = [
         MatDialogModule,
         FileUploadModule,
         MatProgressBarModule,
-        ToastModule
+        TableModule
     ],
-    providers: [Guards, AuthService,MessageService],
+    providers: [Guards, AuthService],
     bootstrap: [AppComponent],
-    entryComponents: [AddUserDialog]
 })
 export class AppModule {
 }

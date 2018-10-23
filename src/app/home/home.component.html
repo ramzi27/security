@@ -1,14 +1,16 @@
 <div class="d-flex flex-column h-100">
     <app-header></app-header>
-    <div class="d-flex flex-fill justify-content-center">
-        <mat-tab-group>
-            <mat-tab label="White List">
-                <app-tabs></app-tabs>
+    <div class="d-flex flex-fill">
+        <mat-tab-group [dynamicHeight]="true" mat-stretch-tab style="min-width: 800px">
+            <mat-tab class="tab" label="White List">
+                <div class="w-100">
+                    <app-tabs></app-tabs>
+                </div>
             </mat-tab>
-            <mat-tab label="Black List"></mat-tab>
+            <mat-tab class="tab" label="Black List"></mat-tab>
         </mat-tab-group>
     </div>
-    <button mat-fab class="bg-primary ml-auto mr-4 mb-4" (click)="openAddUserDialog()">
+    <button mat-fab class="bg-primary ml-auto mr-4 mb-4" (click)="openAddUser()">
         <mat-icon>add</mat-icon>
     </button>
 </div>
