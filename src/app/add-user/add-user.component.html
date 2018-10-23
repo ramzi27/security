@@ -41,7 +41,7 @@
                     </div>
                     <div>
                         <mat-expansion-panel (opened)="showUpload = true" (closed)="showUpload = false"
-                                             [disabled]="f.controls.name.invalid">
+                                             [disabled]="f.controls.name.invalid" #uploadPanel>
                             <mat-expansion-panel-header>
                                 Upload Image
                                 <mat-icon>attachment</mat-icon>
@@ -63,8 +63,8 @@
                         </mat-expansion-panel>
                     </div>
                     <mat-card-actions class="d-flex justify-content-between">
-                        <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Register</button>
                         <button class="btn btn-info" type="button" (click)="resetForm()">Reset</button>
+                        <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Register</button>
                         <button class="btn btn-danger" type="reset" (click)="close()">Cancel</button>
                     </mat-card-actions>
                 </form>

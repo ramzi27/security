@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {MatExpansionPanel} from '@angular/material';
 import {Router} from '@angular/router';
 import {FileUpload} from 'primeng/primeng';
 
@@ -17,6 +18,8 @@ export class AddUserComponent implements OnInit {
     @ViewChild('fileUploader')
     fileUploader: FileUpload;
     isDone = false;
+    @ViewChild('uploadPanel')
+    uploadPanel: MatExpansionPanel;
 
     constructor(private router: Router) {
     }
@@ -52,6 +55,7 @@ export class AddUserComponent implements OnInit {
     resetForm() {
         this.isDone = false;
         this.ngForm.reset();
+        this.uploadPanel.close();
     }
 
     close() {
