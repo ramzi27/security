@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {User} from "../../../services/user";
+import {User} from '../../../services/user';
 
 export enum MenuEvents {
     delete,
@@ -21,7 +21,6 @@ export class ListItemComponent implements OnInit {
     id: number;
     @Output()
     menuClick: EventEmitter<MenuEvents> = new EventEmitter();
-    menuEvents = MenuEvents;
 
     constructor() {
     }

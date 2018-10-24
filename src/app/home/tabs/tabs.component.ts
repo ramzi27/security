@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {UserService} from "../../services/user.service";
-import {User} from "../../services/user";
-import {Subscription} from "rxjs";
-import {MenuEvents} from "./list-item/list-item.component";
+import {Subscription} from 'rxjs';
+import {User} from '../../services/user';
+import {UserService} from '../../services/user.service';
+import {MenuEvents} from './list-item/list-item.component';
 
 @Component({
     selector: 'app-tabs',
@@ -22,7 +22,7 @@ export class TabsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.usersService.getUsers().subscribe(value => {
             this.users = value;
-            // this.isDataLoading = false;
+            this.isDataLoading = false;
         });
     }
 
@@ -31,16 +31,17 @@ export class TabsComponent implements OnInit, OnDestroy {
     }
 
     onRowClicked($event: MenuEvents, index: number) {
+        console.log($event, index);
         const user = this.users[index];
         switch ($event) {
             case MenuEvents.delete:
                 this.users.splice(index, 1);
                 break;
             case MenuEvents.upload:
-                //todo upload image
+                // todo upload image
                 break;
             case MenuEvents.train:
-                //todo train
+                // todo train
                 break;
         }
     }

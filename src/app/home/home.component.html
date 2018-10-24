@@ -1,11 +1,22 @@
 <div class="d-flex flex-column h-100 w-100">
     <app-header></app-header>
-    <div class="d-flex flex-fill w-100">
+    <div class="d-flex flex-fill">
         <mat-tab-group mat-stretch-tab [dynamicHeight]="true" class="tab-group-container">
-            <mat-tab label="White List">
-                <app-tabs dbType="whiteLists"></app-tabs>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="mr-2">lock_open</mat-icon>
+                    White List
+                </ng-template>
+                <div class="w-100 h-100">
+                    <app-tabs dbType="whiteLists"></app-tabs>
+                </div>
             </mat-tab>
-            <mat-tab label="Black List"></mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="mr-2">lock</mat-icon>
+                    Black List
+                </ng-template>
+            </mat-tab>
         </mat-tab-group>
     </div>
     <button mat-fab class="bg-primary ml-auto mr-4 mb-4" (click)="openAddUser()">

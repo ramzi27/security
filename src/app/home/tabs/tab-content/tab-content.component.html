@@ -1,0 +1,58 @@
+<table mat-table [dataSource]="users" class="w-auto">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef> Birth Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.birthDate}}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="secretWord">
+        <th mat-header-cell *matHeaderCellDef>Secret Word</th>
+        <td mat-cell *matCellDef="let element"> {{element.secretWord}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="imageCount">
+        <th mat-header-cell *matHeaderCellDef>Images Count</th>
+        <td mat-cell *matCellDef="let element;">
+            <span class="badge-primary badge rounded-circle">{{element.imageCount}}</span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="menu">
+        <th mat-header-cell *matHeaderCellDef>Menu</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="menuClicked(menuEvents.train,i)">
+                    <mat-icon>cached</mat-icon>
+                    <span>train</span>
+                </button>
+                <button mat-menu-item (click)="menuClicked(menuEvents.delete,i)">
+                    <mat-icon>delete</mat-icon>
+                    <span>remove</span>
+                </button>
+                <button mat-menu-item (click)="menuClicked(menuEvents.upload,i)">
+                    <mat-icon>attachment</mat-icon>
+                    <span>upload images</span>
+                </button>
+            </mat-menu>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

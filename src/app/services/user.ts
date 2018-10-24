@@ -3,6 +3,8 @@ export class User {
     birthDate: string;
     secretWord: string;
     imageUrl?: string;
+    id: number;
+    imageCount: number;
 
     constructor(name: string, birthDate: string, secretWord: string, imageUrl: string) {
         this.name = name;

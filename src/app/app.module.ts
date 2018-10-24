@@ -1,3 +1,4 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
@@ -27,14 +28,14 @@ import {FileUploadModule} from 'primeng/primeng';
 import {AddUserComponent} from './add-user/add-user.component';
 
 import {AppComponent} from './app.component';
-import {AuthService} from './services/auth.service';
-import {Guards} from './services/guards';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
+import {ListItemComponent} from './home/tabs/list-item/list-item.component';
+import {TabContentComponent} from './home/tabs/tab-content/tab-content.component';
 import {TabsComponent} from './home/tabs/tabs.component';
 import {LoginComponent} from './login/login.component';
-import {ListItemComponent} from './home/tabs/list-item/list-item.component';
-import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from './services/auth.service';
+import {Guards} from './services/guards';
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -51,6 +52,7 @@ const Routes: Routes = [
         TabsComponent,
         AddUserComponent,
         ListItemComponent,
+        TabContentComponent,
     ],
     imports: [
         BrowserModule,
@@ -76,7 +78,8 @@ const Routes: Routes = [
         MatExpansionModule,
         MatDividerModule,
         MatListModule,
-        HttpClientModule
+        HttpClientModule,
+        MatTableModule,
     ],
     providers: [Guards, AuthService],
     bootstrap: [AppComponent],
