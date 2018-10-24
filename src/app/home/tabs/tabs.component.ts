@@ -20,7 +20,7 @@ export class TabsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.usersService.getUsers().subscribe(value => {
+        this.subscription = this.usersService.getUsers().subscribe(value => {
             this.users = value;
             this.isDataLoading = false;
         });

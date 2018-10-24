@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {MatExpansionPanel} from '@angular/material';
 import {Router} from '@angular/router';
-import {FileUpload} from 'primeng/primeng';
 
 @Component({
     selector: 'app-add-user',
@@ -15,8 +14,6 @@ export class AddUserComponent implements OnInit {
     showUpload = false;
     @ViewChild('f')
     ngForm: NgForm;
-    @ViewChild('fileUploader')
-    fileUploader: FileUpload;
     isDone = false;
     @ViewChild('uploadPanel')
     uploadPanel: MatExpansionPanel;
@@ -46,10 +43,6 @@ export class AddUserComponent implements OnInit {
             url = 'http://localhost:5000/images/' + name;
         }
         return url;
-    }
-
-    removeFile(index) {
-        this.fileUploader.remove(null, index);
     }
 
     resetForm() {

@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     password: HTMLInputElement;
     isError = false;
     hidePassword = true;
+    isLoading = false;
 
     constructor(private router: Router, private authService: AuthService) {
     }
@@ -30,20 +31,29 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        const user = this.username.value;
-        const pass = this.password.value;
-        const id = setTimeout(() => {
-            this.ngForm.reset();
-            this.isError = false;
-            clearTimeout(id);
-        }, 30000);
-        if (user === USERNAME && pass === PASSWORD) {
-            this.authService.login();
-            this.ngForm.reset();
-            this.isError = false;
-        } else {
-            this.isError = true;
-            this.ngForm.reset(this.ngForm.value);
-        }
+        this.isLoading = true;
+        const timerId = setTimeout(() => {
+            this.isLoading = false;
+            logIn();
+            clearTimeout(timerId);
+        }, 10000);
+        const logIn = () => {
+            const user = this.username.value;
+            const pass = this.password.value;
+            const id = setTimeout(() => {
+                this.ngForm.reset();
+                this.isError = false;
+                clearTimeout(id);
+            }, 30000);
+            if (user === USERNAME && pass === PASSWORD) {
+                this.authService.login();
+                this.ngForm.reset();
+                this.isError = false;
+            } else {
+                this.isError = true;
+                this.ngForm.reset(this.ngForm.value);
+            }
+        };
+
     }
 }

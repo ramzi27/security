@@ -47,18 +47,10 @@
                                 <mat-icon>attachment</mat-icon>
                             </mat-expansion-panel-header>
                             <div *ngIf="showUpload">
-                                <p-fileUpload multiple="true" name="file" [url]="getUploadUrl()" accept="image/*"
-                                              #fileUploader>
-                                    <ng-template let-file let-i="index" pTemplate='file'>
-                                        <div>
-                                            <img [src]="file.objectURL" [width]="70"/>
-                                            <span>{{file.name}}</span>
-                                            <span class="btn ml-auto" (click)="removeFile(i)">
-                                    <mat-icon>cancel</mat-icon>
-                                </span>
-                                        </div>
-                                    </ng-template>
-                                </p-fileUpload>
+                                <app-image-uploader
+                                        [uploadUrl]="getUploadUrl()"
+                                >
+                                </app-image-uploader>
                             </div>
                         </mat-expansion-panel>
                     </div>

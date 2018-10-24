@@ -33,6 +33,7 @@ import {HomeComponent} from './home/home.component';
 import {ListItemComponent} from './home/tabs/list-item/list-item.component';
 import {TabContentComponent} from './home/tabs/tab-content/tab-content.component';
 import {TabsComponent} from './home/tabs/tabs.component';
+import {ImageUploaderComponent} from './image-uploader/image-uploader.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './services/auth.service';
 import {Guards} from './services/guards';
@@ -53,6 +54,7 @@ const Routes: Routes = [
         AddUserComponent,
         ListItemComponent,
         TabContentComponent,
+        ImageUploaderComponent,
     ],
     imports: [
         BrowserModule,
