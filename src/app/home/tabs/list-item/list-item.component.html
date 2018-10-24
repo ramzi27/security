@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between flex-row">
+    <h4>{{id}}</h4>
+    <h4 mat-lin>{{user.name}}</h4>
+    <h4>{{user.birthDate | date}}</h4>
+    <h4>{{user.secretWord}}</h4>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="menuClicked(menuEvents.train)">
+            <mat-icon>cached</mat-icon>
+            <span>train</span>
+        </button>
+        <button mat-menu-item (click)="menuClicked(menuEvents.delete)">
+            <mat-icon>delete</mat-icon>
+            <span>remove</span>
+        </button>
+        <button mat-menu-item (click)="menuClicked(menuEvents.upload)">
+            <mat-icon>attachment</mat-icon>
+            <span>upload images</span>
+        </button>
+    </mat-menu>
+    <mat-divider></mat-divider>
+</div>
