@@ -10,6 +10,7 @@ import {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatMenuModule,
     MatNativeDateModule,
     MatProgressBarModule,
@@ -26,12 +27,14 @@ import {FileUploadModule} from 'primeng/primeng';
 import {AddUserComponent} from './add-user/add-user.component';
 
 import {AppComponent} from './app.component';
-import {AuthService} from './auth/auth.service';
-import {Guards} from './auth/guards';
+import {AuthService} from './services/auth.service';
+import {Guards} from './services/guards';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {TabsComponent} from './home/tabs/tabs.component';
 import {LoginComponent} from './login/login.component';
+import {ListItemComponent} from './home/tabs/list-item/list-item.component';
+import {HttpClientModule} from "@angular/common/http";
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -47,6 +50,7 @@ const Routes: Routes = [
         HomeComponent,
         TabsComponent,
         AddUserComponent,
+        ListItemComponent,
     ],
     imports: [
         BrowserModule,
@@ -70,7 +74,9 @@ const Routes: Routes = [
         FileUploadModule,
         MatProgressBarModule,
         MatExpansionModule,
-        MatDividerModule
+        MatDividerModule,
+        MatListModule,
+        HttpClientModule
     ],
     providers: [Guards, AuthService],
     bootstrap: [AppComponent],

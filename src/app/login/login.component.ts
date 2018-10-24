@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../auth/auth.service';
+import {AuthService} from '../services/auth.service';
 
 
 const USERNAME = 'ramzi';

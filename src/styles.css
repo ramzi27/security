@@ -23,3 +23,7 @@
     min-width: 0;
 }
 
+.mat-tab-label {
+    min-width: 50% !important;
+    height: 64px !important;
+}
