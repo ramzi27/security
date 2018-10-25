@@ -1,0 +1,5 @@
+<div *ngIf="uploadUrl" class="text-center">
+    <app-image-uploader [uploadUrl]="uploadUrl">
+    </app-image-uploader>
+    <button (click)="closeDialog()" class="mt-2 btn btn-danger">cancel</button>
+</div>

@@ -1,12 +1,6 @@
 <div>
-    <mat-spinner *ngIf="isDataLoading;else tableContainer"></mat-spinner>
+    <mat-spinner *ngIf="isDataLoading;else tableContainer" class="mr-auto ml-auto mt-5"></mat-spinner>
     <ng-template #tableContainer>
-        <!--<mat-list>-->
-        <!--<mat-list-item *ngFor="let user of users;let i =index">-->
-        <!--<app-list-item [user]="user" [id]="i+1" class="w-50"-->
-        <!--(menuClick)="onRowClicked($event,i)"></app-list-item>-->
-        <!--</mat-list-item>-->
-        <!--</mat-list>-->
         <app-tab-content [users]="users" (menuClick)="onRowClicked($event.event,$event.index)"></app-tab-content>
     </ng-template>
 

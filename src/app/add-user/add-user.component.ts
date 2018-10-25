@@ -2,13 +2,15 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {MatExpansionPanel} from '@angular/material';
 import {Router} from '@angular/router';
+import {CanDeactivateComponent} from "../services/can-deactivate.guard";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-add-user',
     templateUrl: './add-user.component.html',
     styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent implements OnInit, CanDeactivateComponent {
     startDate = new Date(1990, 0, 1);
     LIST_TYPES = [{name: 'White List', value: 'whiteList'}, {name: 'Black List', value: 'blackList'}];
     showUpload = false;
@@ -54,4 +56,12 @@ export class AddUserComponent implements OnInit {
     close() {
         this.router.navigate(['/home']);
     }
+
+    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+        if (this.ngForm.valid)
+            return false;
+        return true;
+    }
+
+
 }

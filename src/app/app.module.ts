@@ -30,18 +30,20 @@ import {AddUserComponent} from './add-user/add-user.component';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
-import {ListItemComponent} from './home/tabs/list-item/list-item.component';
 import {TabContentComponent} from './home/tabs/tab-content/tab-content.component';
 import {TabsComponent} from './home/tabs/tabs.component';
 import {ImageUploaderComponent} from './image-uploader/image-uploader.component';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './services/auth.service';
-import {Guards} from './services/guards';
+import {AuthGuard} from './services/auth-guard';
+import {CanDeactivateGuard} from "./services/can-deactivate.guard";
+import {ImageDialogComponent} from './home/tabs/image-dialog/image-dialog.component';
+import {SettingsDialogComponent} from './settings-dialog/settings-dialog.component';
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
-    {path: 'home', component: HomeComponent, canActivate: [Guards]},
-    {path: 'add-user', component: AddUserComponent, canActivate: [Guards]}
+    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+    {path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]}
 ];
 
 @NgModule({
@@ -52,9 +54,10 @@ const Routes: Routes = [
         HomeComponent,
         TabsComponent,
         AddUserComponent,
-        ListItemComponent,
         TabContentComponent,
         ImageUploaderComponent,
+        ImageDialogComponent,
+        SettingsDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -83,8 +86,9 @@ const Routes: Routes = [
         HttpClientModule,
         MatTableModule,
     ],
-    providers: [Guards, AuthService],
+    providers: [AuthGuard, AuthService, CanDeactivateGuard],
     bootstrap: [AppComponent],
+    entryComponents: [ImageDialogComponent, SettingsDialogComponent]
 })
 export class AppModule {
 }

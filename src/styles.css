@@ -24,6 +24,10 @@
 }
 
 .mat-tab-label {
-    min-width: 50% !important;
+    /*min-width: 50% !important;*/
     height: 64px !important;
+}
+
+.mat-tab-label-active {
+    color: #1565C0;
 }

@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from '../../../services/user';
 
-
 export enum MenuEvents {
     delete,
     train,
@@ -26,6 +25,7 @@ export class TabContentComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("table rendered");
     }
 
     menuClicked(event: MenuEvents, index: number) {

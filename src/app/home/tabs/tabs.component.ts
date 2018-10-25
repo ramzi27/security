@@ -2,7 +2,9 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {User} from '../../services/user';
 import {UserService} from '../../services/user.service';
-import {MenuEvents} from './list-item/list-item.component';
+import {MenuEvents} from "./tab-content/tab-content.component";
+import {MatDialog} from "@angular/material";
+import {ImageDialogComponent} from "./image-dialog/image-dialog.component";
 
 @Component({
     selector: 'app-tabs',
@@ -16,14 +18,16 @@ export class TabsComponent implements OnInit, OnDestroy {
     users: User[];
     subscription: Subscription;
 
-    constructor(private usersService: UserService) {
+    constructor(private usersService: UserService, public dialog: MatDialog) {
     }
 
     ngOnInit() {
-        this.subscription = this.usersService.getUsers().subscribe(value => {
-            this.users = value;
-            this.isDataLoading = false;
-        });
+        setTimeout(() => {
+            this.subscription = this.usersService.getUsers().subscribe(value => {
+                this.users = value;
+                this.isDataLoading = false;
+            });
+        }, 5000);
     }
 
     ngOnDestroy(): void {
@@ -36,8 +40,10 @@ export class TabsComponent implements OnInit, OnDestroy {
         switch ($event) {
             case MenuEvents.delete:
                 this.users.splice(index, 1);
+                this.users = [...this.users];
                 break;
             case MenuEvents.upload:
+                this.dialog.open(ImageDialogComponent, {data: {url: user.name}});
                 // todo upload image
                 break;
             case MenuEvents.train:

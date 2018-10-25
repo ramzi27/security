@@ -1,0 +1,13 @@
+<div class="text-center">
+    <span>
+        <h2 class="text-primary">Settings</h2>
+        <mat-icon prefix class="mr-2">settings</mat-icon>
+    </span>
+    <mat-form-field class="form-width">
+        <input matInput type="url" placeholder="enter server url" required [(ngModel)]="url" name="url"/>
+    </mat-form-field>
+    <div class="d-flex flex-row justify-content-between">
+        <button class="btn btn-primary" [disabled]="url.length === 0" (click)="saveUrl()">save</button>
+        <button class="btn btn-danger" (click)="closeDialog()">cancel</button>
+    </div>
+</div>
