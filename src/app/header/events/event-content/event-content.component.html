@@ -1,0 +1,15 @@
+<div class="h-100">
+    <mat-spinner class="m-auto" [diameter]="30" *ngIf="isDataLoading; else eventsContainer"></mat-spinner>
+    <ng-template #eventsContainer>
+        <span class="position-sticky text-info text">Notifications ({{events.length}})</span>
+        <div class="event-container">
+            <div *ngFor="let event of events"
+                 class="event border-top d-flex flex-row justify-content-between">
+                <mat-icon [color]="ICONS_COLORS[event.eventType]">{{Event_Icons[event.eventType]}}</mat-icon>
+                <span class="event-text">{{event.event}}</span>
+                <span class="event-date">{{event.date| date}}</span>
+            </div>
+        </div>
+    </ng-template>
+</div>
+

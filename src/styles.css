@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~primeng/resources/themes/nova-colored/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeng/resources/themes/omega/theme.css";
 
 .center-content {
     display: flex !important;
@@ -23,11 +24,29 @@
     min-width: 0;
 }
 
-.mat-tab-label {
-    /*min-width: 50% !important;*/
-    height: 64px !important;
-}
-
 .mat-tab-label-active {
     color: #1565C0;
+}
+
+.disable-focus:focus {
+    outline: 0;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

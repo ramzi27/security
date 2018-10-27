@@ -1,0 +1,38 @@
+<div class="h-100 w-100 d-flex flex-row justify-content-between">
+    <div class="text-center">
+        <h4 class="text-primary">Take Image For {{ matData.name }}</h4>
+        <div>
+            <webcam [height]="500" [width]="500"
+                    [trigger]="triggerObservable"
+                    (imageCapture)="handleImage($event)"
+                    [allowCameraSwitch]="true"
+                    [switchCamera]="nextWebcamObservable"
+                    [videoOptions]="videoOptions"
+                    (initError)="handleInitError($event)"
+            ></webcam>
+            <div class="d-flex flex-row justify-content-around">
+                <button class="btn btn-success" (click)="triggerSnapshot();">take image</button>
+                <button class="btn btn-info" (click)="showNextWebcam(true);">next camera</button>
+                <button class="btn btn-danger" (click)="closeDialog()">cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="image_list_container text-center" *ngIf="images.length > 0">
+        <div class="clear">
+            <span class="text-primary m-1">({{images.length}}) Images</span>
+            <span (click)="images = []" class="btn">
+                <mat-icon>cancel</mat-icon>
+            </span>
+            <span (click)="uploadImages()" class="btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path
+                      d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+            </span>
+        </div>
+        <div *ngFor="let image of images;let i = index" class="border image-container shadow-sm">
+            <img [src]="image.imageAsDataUrl" width="170px"/>
+            <button type="button" class="close close-icon" aria-label="Close" (click)="removeImage(i)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+</div>

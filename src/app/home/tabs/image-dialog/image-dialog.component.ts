@@ -1,8 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {User} from '../../../services/user';
 
 export interface DialogData {
     url: string;
+    user: User;
 }
 
 @Component({
@@ -12,13 +14,15 @@ export interface DialogData {
 })
 export class ImageDialogComponent implements OnInit {
     uploadUrl: string;
+    user: User;
 
     constructor(public matDialogRef: MatDialogRef<ImageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     }
 
     ngOnInit() {
+        this.matDialogRef.disableClose = true;
         this.uploadUrl = this.data.url;
-        console.log(this.uploadUrl);
+        this.user = this.data.user;
     }
 
     closeDialog() {

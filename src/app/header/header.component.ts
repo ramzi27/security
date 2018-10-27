@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {AuthService} from '../services/auth.service';
-import {MatDialog} from "@angular/material";
-import {SettingsDialogComponent} from "../settings-dialog/settings-dialog.component";
+import {SettingsDialogComponent} from '../settings-dialog/settings-dialog.component';
 
 @Component({
     selector: 'app-header',

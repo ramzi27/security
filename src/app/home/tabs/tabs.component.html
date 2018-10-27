@@ -1,7 +1,8 @@
 <div>
-    <mat-spinner *ngIf="isDataLoading;else tableContainer" class="mr-auto ml-auto mt-5"></mat-spinner>
+    <div class="disable-scroll">
+        <mat-spinner *ngIf="isDataLoading;else tableContainer" class="mr-auto ml-auto mt-5"></mat-spinner>
+    </div>
     <ng-template #tableContainer>
         <app-tab-content [users]="users" (menuClick)="onRowClicked($event.event,$event.index)"></app-tab-content>
     </ng-template>
-
 </div>

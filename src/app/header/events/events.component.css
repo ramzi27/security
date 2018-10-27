@@ -1,0 +1,16 @@
+.event-menu {
+    width: 300px;
+    overflow: auto;
+}
+
+.event-modal {
+    position: absolute;
+    top: 45px;
+    right: 120px;
+    z-index: 15000;
+    padding: 16px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-width: 430px;
+    max-height: 430px;
+}

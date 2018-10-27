@@ -1,0 +1,22 @@
+.image_list_container {
+    overflow: auto;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    max-height: 90vh;
+    padding: 12px;
+}
+
+.image-container {
+    padding: 8px;
+    margin-bottom: 12px;
+}
+
+.close-icon {
+    position: relative;
+    right: 20px
+}
+
+.clear {
+    position: relative;
+    right: 20px;
+}

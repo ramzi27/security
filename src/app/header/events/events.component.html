@@ -1,0 +1,6 @@
+<button mat-icon-button class="disable-focus" (click)="openEvents()" #eventButton>
+    <mat-icon color="primary" [matBadge]="events.length" matBadgeColor="warn" matBadge="">notifications</mat-icon>
+</button>
+<div #eventsDiv class="event-modal bg-white shadow-lg rounded" *ngIf="visable">
+    <app-event-content [events]="events" [isDataLoading]="isDataLoading"></app-event-content>
+</div>

@@ -1,13 +1,13 @@
 <div class="d-flex flex-column h-100 w-100">
     <app-header></app-header>
     <div class="d-flex flex-fill ml-5">
-        <mat-tab-group mat-stretch-tab [dynamicHeight]="true" class="tab-group-container">
+        <mat-tab-group mat-stretch-tab class="tab-group-container">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="mr-2">lock_open</mat-icon>
                     White List
                 </ng-template>
-                <div class="w-100 h-100">
+                <div class="h-auto">
                     <app-tabs dbType="whiteLists"></app-tabs>
                 </div>
             </mat-tab>

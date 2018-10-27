@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material";
+import {MatDialogRef} from '@angular/material';
 
 @Component({
     selector: 'app-settings-dialog',
@@ -8,13 +8,13 @@ import {MatDialogRef} from "@angular/material";
 })
 export class SettingsDialogComponent implements OnInit {
 
-    url: string = '';
+    url = localStorage.getItem('serverUrl') ? localStorage.getItem('serverUrl') : '';
 
     constructor(public matDialog: MatDialogRef<SettingsDialogComponent>) {
     }
 
     ngOnInit() {
-
+        this.matDialog.disableClose = true;
     }
 
     closeDialog() {
@@ -22,8 +22,10 @@ export class SettingsDialogComponent implements OnInit {
     }
 
     saveUrl() {
-        localStorage.setItem("serverUrl", this.url);
-        alert("Server Url Saved");
+        if (!this.url.endsWith('/')) {
+            this.url += '/';
+        }
+        localStorage.setItem('serverUrl', this.url);
         this.matDialog.close();
     }
 }

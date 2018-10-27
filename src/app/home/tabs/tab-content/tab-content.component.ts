@@ -4,7 +4,9 @@ import {User} from '../../../services/user';
 export enum MenuEvents {
     delete,
     train,
-    upload
+    upload,
+    camera,
+    images
 }
 
 
@@ -25,7 +27,6 @@ export class TabContentComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("table rendered");
     }
 
     menuClicked(event: MenuEvents, index: number) {

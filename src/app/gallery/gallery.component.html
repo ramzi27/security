@@ -1,0 +1,7 @@
+<div>
+    <mat-spinner *ngIf="isDataLoading;else container"></mat-spinner>
+    <ng-template #container>
+        <p-galleria [images]="images" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+    </ng-template>
+    <button type="button" class="btn btn-danger mt-2" (click)="matDialogRef.close()">cancel</button>
+</div>

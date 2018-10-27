@@ -5,18 +5,20 @@
                 <img class="brand-image" src="../../assets/security.png"/>
             </a>
         </span>
-        <span mat-button class="ml-auto dropdown-toggle arrow" [matMenuTriggerFor]="menu">
+        <h3 class="text-primary mr-auto ml-0">Security System</h3>
+        <app-events class="ml-auto"></app-events>
+        <button mat-button class="dropdown-toggle arrow p-1 disable-focus" [matMenuTriggerFor]="menu">
             Log Out
             <mat-menu #menu="matMenu">
+                <button mat-menu-item class="logout" (click)="openSettings()" class="disable-focus">
+                    <span class="logout">Settings</span>
+                    <mat-icon>settings</mat-icon>
+                </button>
                 <button mat-menu-item class="logout" (click)="logOut()" class="disable-focus">
                     <span class="logout">Log Out</span>
                     <mat-icon>exit_to_app</mat-icon>
                 </button>
-                 <button mat-menu-item class="logout" (click)="openSettings()" class="disable-focus">
-                    <span class="logout">Settings</span>
-                    <mat-icon>settings</mat-icon>
-                </button>
             </mat-menu>
-        </span>
+        </button>
     </mat-toolbar-row>
 </mat-toolbar>

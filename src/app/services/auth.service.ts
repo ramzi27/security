@@ -1,32 +1,36 @@
 import {Injectable} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
-import {MatDialog} from "@angular/material";
-import {SettingsDialogComponent} from "../settings-dialog/settings-dialog.component";
+import {SettingsDialogComponent} from '../settings-dialog/settings-dialog.component';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    isLoggedIn = false;
 
     constructor(private router: Router, public matDialog: MatDialog) {
     }
 
     public login() {
-        this.isLoggedIn = true;
-        const url = localStorage.getItem("serverUrl");
+        localStorage.setItem('isLogged', 'true');
+        const url = localStorage.getItem('serverUrl');
         if (!url) {
             this.matDialog.open(SettingsDialogComponent);
         }
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home'], {replaceUrl: true});
+
     }
 
     public logOut() {
-        this.isLoggedIn = false;
-        this.router.navigate(['/login']);
+        localStorage.clear();
+        this.router.navigate(['/login'], {replaceUrl: true});
     }
 
     public checkLogin() {
-        return this.isLoggedIn;
+        const isLogged = localStorage.getItem('isLogged');
+        if (!isLogged) {
+            return false;
+        }
+        return true;
     }
 }

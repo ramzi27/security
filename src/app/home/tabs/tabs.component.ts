@@ -1,10 +1,12 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {Subscription} from 'rxjs';
+import {CameraComponent} from '../../camera/camera.component';
+import {GalleryComponent} from '../../gallery/gallery.component';
 import {User} from '../../services/user';
 import {UserService} from '../../services/user.service';
-import {MenuEvents} from "./tab-content/tab-content.component";
-import {MatDialog} from "@angular/material";
-import {ImageDialogComponent} from "./image-dialog/image-dialog.component";
+import {ImageDialogComponent} from './image-dialog/image-dialog.component';
+import {MenuEvents} from './tab-content/tab-content.component';
 
 @Component({
     selector: 'app-tabs',
@@ -18,7 +20,9 @@ export class TabsComponent implements OnInit, OnDestroy {
     users: User[];
     subscription: Subscription;
 
-    constructor(private usersService: UserService, public dialog: MatDialog) {
+    constructor(private usersService: UserService,
+                public dialog: MatDialog,
+    ) {
     }
 
     ngOnInit() {
@@ -31,7 +35,9 @@ export class TabsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 
     onRowClicked($event: MenuEvents, index: number) {
@@ -43,12 +49,17 @@ export class TabsComponent implements OnInit, OnDestroy {
                 this.users = [...this.users];
                 break;
             case MenuEvents.upload:
-                this.dialog.open(ImageDialogComponent, {data: {url: user.name}});
+                this.dialog.open(ImageDialogComponent, {data: {url: 'asda', user}});
                 // todo upload image
                 break;
             case MenuEvents.train:
                 // todo train
                 break;
+            case MenuEvents.camera:
+                this.dialog.open(CameraComponent, {data: user});
+                break;
+            case MenuEvents.images:
+                this.dialog.open(GalleryComponent, {data: user});
         }
     }
 }

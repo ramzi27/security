@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             this.isLoading = false;
             logIn();
             clearTimeout(timerId);
-        }, 10000);
+        }, 2000);
         const logIn = () => {
             const user = this.username.value;
             const pass = this.password.value;
