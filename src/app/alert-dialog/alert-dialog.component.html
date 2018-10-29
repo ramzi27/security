@@ -1,0 +1,49 @@
+<div class="text-center alert-container border">
+    <span>
+        <mat-icon color="warn">warning</mat-icon>
+        <h3 class="text-danger d-inline">Alert</h3>
+    </span>
+    <h5 class="text-secondary">Unkown Person Detected Please Classify</h5>
+    <div class="d-flex flex-row justify-content-between mt-2">
+        <img [src]="matData" class="img-thumbnail mr-4 rounded">
+        <div class="text-center">
+            <form #f="ngForm" (ngSubmit)="register()">
+                <div class="text-center">
+                    <mat-form-field class="form-width">
+                        <mat-icon ngClass="pr-3" matPrefix class="pr-2">account_circle</mat-icon>
+                        <input class="custom-input" name="name" [type]="text" placeholder="Enter Your Name"
+                               #name="ngModel" required ngModel matInput>
+                    </mat-form-field>
+                </div>
+                <div class="text-center">
+                    <mat-form-field class="form-width">
+                        <input class="custom-input" #secretWord="ngModel" name="secretWord" [type]="text"
+                               placeholder="Enter Your Secret Word" required ngModel matInput>
+                    </mat-form-field>
+                </div>
+                <div class="text-center">
+                    <mat-form-field class="form-width">
+                        <input class="custom-input" matInput [matDatepicker]="picker" placeholder="Choose Birthday"
+                               required #date="ngModel" name="date" ngModel>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="text-center">
+                    <mat-form-field class="form-width">
+                        <mat-select value="" placeholder="Select List Type" name="type" required #type="ngModel"
+                                    [required]="true" ngModel>
+                            <mat-option *ngFor="let type of LIST_TYPES" [value]="type.value">{{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions class="d-flex justify-content-between">
+                    <button class="btn btn-info" type="button" (click)="resetForm()">Reset</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Register</button>
+                    <button class="btn btn-danger" type="button" (click)="close()">Cancel</button>
+                </mat-card-actions>
+            </form>
+        </div>
+    </div>
+</div>

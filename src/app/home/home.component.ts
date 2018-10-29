@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {MatDialog} from "@angular/material";
 
 @Component({
     selector: 'app-home',
@@ -7,9 +8,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    data = [{name: 'ramzi', age: 18}, {name: 'ramsdcvzi', age: 100}, {name: 'ramasdzi', age: 18}, {name: 'sam', age: 18}];
-
-    constructor(private router: Router) {
+    constructor(private router: Router, public matDialog: MatDialog) {
     }
 
     ngOnInit() {

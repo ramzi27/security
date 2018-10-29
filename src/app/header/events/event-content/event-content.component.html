@@ -1,4 +1,4 @@
-<div class="h-100">
+<div>
     <mat-spinner class="m-auto" [diameter]="30" *ngIf="isDataLoading; else eventsContainer"></mat-spinner>
     <ng-template #eventsContainer>
         <span class="position-sticky text-info text">Notifications ({{events.length}})</span>

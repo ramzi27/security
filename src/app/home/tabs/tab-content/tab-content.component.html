@@ -1,5 +1,9 @@
 <div class="table-container">
-    <table mat-table #table [dataSource]="users" class="custom-table mt-3 border ml-auto mr-auto">
+    <mat-form-field class="search-field">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput (keyup)="filterUsers($event.target.value)" placeholder="Search Name">
+    </mat-form-field>
+    <table mat-table #table [dataSource]="usersDataSource" class="custom-table mt-1 border ml-auto mr-auto">
 
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -48,7 +52,7 @@
                         <span>upload images</span>
                     </button>
                     <button mat-menu-item (click)="menuClicked(menuEvents.camera,i)">
-                        <mat-icon>camera</mat-icon>
+                        <mat-icon>add_a_photo</mat-icon>
                         <span>take image</span>
                     </button>
                     <button mat-menu-item (click)="menuClicked(menuEvents.images,i)">

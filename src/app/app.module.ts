@@ -46,6 +46,7 @@ import {AuthGuard} from './services/auth-guard';
 import {AuthService} from './services/auth.service';
 import {CanDeactivateGuard} from './services/can-deactivate.guard';
 import {SettingsDialogComponent} from './settings-dialog/settings-dialog.component';
+import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -69,6 +70,7 @@ const Routes: Routes = [
         EventsComponent,
         EventContentComponent,
         GalleryComponent,
+        AlertDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -103,7 +105,13 @@ const Routes: Routes = [
     ],
     providers: [AuthGuard, AuthService, CanDeactivateGuard],
     bootstrap: [AppComponent],
-    entryComponents: [ImageDialogComponent, SettingsDialogComponent, CameraComponent, GalleryComponent]
+    entryComponents:
+        [ImageDialogComponent,
+            SettingsDialogComponent,
+            CameraComponent,
+            GalleryComponent,
+            AlertDialogComponent
+        ]
 })
 export class AppModule {
 }

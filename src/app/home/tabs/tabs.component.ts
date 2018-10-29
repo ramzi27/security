@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatTableDataSource} from '@angular/material';
 import {Subscription} from 'rxjs';
 import {CameraComponent} from '../../camera/camera.component';
 import {GalleryComponent} from '../../gallery/gallery.component';
@@ -18,6 +18,7 @@ export class TabsComponent implements OnInit, OnDestroy {
     @Input()
     dbType: string;
     users: User[];
+    tableDataSource: MatTableDataSource<User>;
     subscription: Subscription;
 
     constructor(private usersService: UserService,
@@ -29,9 +30,10 @@ export class TabsComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.subscription = this.usersService.getUsers().subscribe(value => {
                 this.users = value;
+                this.tableDataSource = new MatTableDataSource(value);
                 this.isDataLoading = false;
             });
-        }, 5000);
+        }, 0);
     }
 
     ngOnDestroy(): void {
@@ -46,7 +48,7 @@ export class TabsComponent implements OnInit, OnDestroy {
         switch ($event) {
             case MenuEvents.delete:
                 this.users.splice(index, 1);
-                this.users = [...this.users];
+                this.tableDataSource = new MatTableDataSource(this.users);
                 break;
             case MenuEvents.upload:
                 this.dialog.open(ImageDialogComponent, {data: {url: 'asda', user}});

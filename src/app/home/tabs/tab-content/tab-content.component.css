@@ -2,6 +2,23 @@
     width: 50% !important;
 }
 
+.search-field {
+    width: 25% !important;
+    margin-top: 1.25rem !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) {
+    .custom-table {
+        width: 100% !important;
+    }
+
+    .search-field {
+        width: 75% !important;
+    }
+}
 .table-container {
     overflow-y: hidden;
 }
