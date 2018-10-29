@@ -9,7 +9,7 @@ export class EventsService {
     constructor() {
     }
 
-    getAlerts(): Observable {
+    getAlerts(): Observable<number> {
         return timer(0, 5000);
     }
 }

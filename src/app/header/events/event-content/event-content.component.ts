@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'app-event-content',
@@ -10,6 +10,9 @@ export class EventContentComponent implements OnInit {
     isDataLoading;
     @Input()
     events: Event[];
+    @Output()
+    resize: EventEmitter<any> = new EventEmitter();
+
     ICONS_COLORS = {
         LOGIN: 'primary',
         LOGOUT: 'primary',
@@ -29,6 +32,10 @@ export class EventContentComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    resizeModal() {
+        this.resize.emit();
     }
 
 }

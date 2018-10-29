@@ -11,6 +11,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     events: Event[] = [];
     isDataLoading = true;
     intervalId: number;
+    isFullScreen = false;
 
     constructor(private userService: UserService, private eRef: ElementRef) {
     }

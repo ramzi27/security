@@ -14,7 +14,7 @@ import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 export class HeaderComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
-
+    navBarOpened = false;
     constructor(private authService: AuthService,
                 public matDialog: MatDialog,
                 private eventService: EventsService
@@ -40,5 +40,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
+    }
+
+    checkAlerts() {
+
     }
 }

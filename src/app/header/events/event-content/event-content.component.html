@@ -1,7 +1,12 @@
 <div>
     <mat-spinner class="m-auto" [diameter]="30" *ngIf="isDataLoading; else eventsContainer"></mat-spinner>
     <ng-template #eventsContainer>
-        <span class="position-sticky text-info text">Notifications ({{events.length}})</span>
+        <div class="d-flex flex-row justify-content-between align-self-center">
+            <span class="position-sticky text-info text">Notifications ({{events.length}})</span>
+            <button mat-icon-button class="disable-focus" (click)="resizeModal()">
+                <mat-icon>fullscreen</mat-icon>
+            </button>
+        </div>
         <div class="event-container">
             <div *ngFor="let event of events"
                  class="event border-top d-flex flex-row justify-content-between">
