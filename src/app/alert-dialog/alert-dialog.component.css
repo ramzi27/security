@@ -9,3 +9,9 @@
     bottom: 20px;
     right: 25px;
 }
+
+.dialog-close {
+    position: relative;
+    bottom: 40px;
+    left: 30px;
+}

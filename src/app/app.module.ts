@@ -47,6 +47,7 @@ import {AuthService} from './services/auth.service';
 import {CanDeactivateGuard} from './services/can-deactivate.guard';
 import {SettingsDialogComponent} from './settings-dialog/settings-dialog.component';
 import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
+import {UserFormComponent} from './add-user/user-form/user-form.component';
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -71,6 +72,7 @@ const Routes: Routes = [
         EventContentComponent,
         GalleryComponent,
         AlertDialogComponent,
+        UserFormComponent,
     ],
     imports: [
         BrowserModule,

@@ -1,6 +1,11 @@
-import {Component, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {NgForm} from "@angular/forms";
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from "@angular/material";
+import {Router} from "@angular/router";
+
+enum DbTypes {
+    blacklist,
+    whitelist
+}
 
 @Component({
     selector: 'app-alert-dialog',
@@ -8,23 +13,16 @@ import {NgForm} from "@angular/forms";
     styleUrls: ['./alert-dialog.component.css']
 })
 export class AlertDialogComponent implements OnInit {
-    startDate = new Date(1990, 0, 1);
-    LIST_TYPES = [{name: 'White List', value: 'whiteList'}, {name: 'Black List', value: 'blackList'}];
-    @ViewChild('f')
-    ngForm: NgForm;
-    isDone = false;
 
-
+    dbTypes = DbTypes;
     constructor(
         public matDialog: MatDialogRef<AlertDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public matData: string
+        @Inject(MAT_DIALOG_DATA) public matData: string,
+        private snackService: MatSnackBar,
+        private router: Router
     ) {
     }
 
-    resetForm() {
-        this.isDone = false;
-        this.ngForm.reset();
-    }
 
     ngOnInit() {
         this.matDialog.disableClose = true;
@@ -39,4 +37,13 @@ export class AlertDialogComponent implements OnInit {
         this.matDialog.close();
     }
 
+    addTo(type: DbTypes) {
+        this.snackService.open("Image Was Added To Image List .....", "ok");
+        this.router.navigate(['/add-user']);
+        if (type == DbTypes.whitelist) { //todo send image
+
+        } else {
+
+        }
+    }
 }
