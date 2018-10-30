@@ -13,11 +13,11 @@
 
 .custom-input {
     height: 26px;
-    width: 280px !important;
+    width: 230px !important;
 }
 
 .form-width {
-    width: 260px;
+    width: 230px !important;
     display: block;
     position: relative;
     flex: auto;

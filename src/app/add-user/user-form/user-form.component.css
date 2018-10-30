@@ -1,0 +1,22 @@
+@media screen and (min-width: 768px) {
+    .form-container {
+        height: 100%;
+    }
+
+    .right-margin {
+        margin-right: 1.5rem !important;
+    }
+
+    .user-img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .user-img {
+        width: 0px;
+        height: 0px;
+    }
+
+}

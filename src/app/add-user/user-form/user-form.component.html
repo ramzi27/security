@@ -1,34 +1,31 @@
-<div class="center-content h-100 p-3">
-    <mat-card class="shadow rounded">
+<div class="center-content form-container">
+    <mat-card class="shadow-lg rounded">
         <mat-card-header class="w-100 bg-primary text-center d-block">
             <mat-card-title>
                 <h3 class="text-white">Add User</h3>
             </mat-card-title>
         </mat-card-header>
-        <mat-card-content class="d-flex justify-content-center">
+        <mat-card-content class="d-flex flex-row justify-content-between">
+            <div class="d-flex justify-content-center">
             <form #f="ngForm" (ngSubmit)="register()">
                 <div class="text-center">
-                    <mat-form-field class="form-width">
+                    <mat-form-field class="form-width right-margin">
                         <mat-icon ngClass="pr-3" matPrefix class="pr-2">account_circle</mat-icon>
                         <input class="custom-input" name="name" type="text" placeholder="Enter Your Name"
                                #name="ngModel" required ngModel matInput>
                     </mat-form-field>
-                </div>
-                <div class="text-center">
                     <mat-form-field class="form-width">
                         <input class="custom-input" #secretWord="ngModel" name="secretWord" type="text"
                                placeholder="Enter Your Secret Word" required ngModel matInput>
                     </mat-form-field>
                 </div>
                 <div class="text-center">
-                    <mat-form-field class="form-width">
+                    <mat-form-field class="form-width right-margin">
                         <input class="custom-input" matInput [matDatepicker]="picker" placeholder="Choose Birthday"
                                required #date="ngModel" name="date" ngModel>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
                     </mat-form-field>
-                </div>
-                <div class="text-center">
                     <mat-form-field class="form-width">
                         <mat-select value="" placeholder="Select List Type" name="type" required #type="ngModel"
                                     [required]="true" ngModel>
@@ -38,13 +35,11 @@
                     </mat-form-field>
                 </div>
                 <div class="text-center">
-                    <mat-form-field class="form-width">
+                    <mat-form-field class="form-width right-margin">
                         <input class="custom-input" name="childNo" type="number" min="0"
                                placeholder="Enter How Many Children Do You Have"
                                #name="ngModel" required ngModel matInput>
                     </mat-form-field>
-                </div>
-                <div class="text-center">
                     <mat-form-field class="form-width">
                         <input class="custom-input" name="favoriteCar" type="text" placeholder="Enter Your Favorite Car"
                                #name="ngModel" required ngModel matInput>
@@ -72,12 +67,16 @@
                         </div>
                     </mat-expansion-panel>
                 </div>
-                <mat-card-actions class="d-flex justify-content-between">
+                <mat-card-actions class="d-flex justify-content-between p-3 w-100">
                     <button class="btn btn-info" type="button" (click)="resetForm()">Reset</button>
                     <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Register</button>
                     <button class="btn btn-danger" type="button" (click)="close()">Cancel</button>
                 </mat-card-actions>
             </form>
+            </div>
+            <div class="d-flex align-items-center h-100">
+                <img src="../../../assets/add-user.png" class="user-img">
+            </div>
         </mat-card-content>
         <span *ngIf="isDone" class="bg-success text-white card-footer text-center">
                 User Added Successfully
