@@ -3,24 +3,13 @@ import {Injectable} from '@angular/core';
 import {WebcamImage} from 'ngx-webcam';
 import {Observable} from 'rxjs';
 import {Image} from '../gallery/image.model';
-import {User} from './user';
-
-const API = {
-    users: 'users.json',
-    events: 'events.json'
-};
+import {DB_TYPES, User} from './user';
+import {APIS} from "./api";
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    users: User[] = [{id: 1, name: 'ramzi', birthDate: 'Aug 02 2018', secretWord: 'hig', imageCount: 20}, {
-        name: 'ramfvdfzi',
-        birthDate: 'Aug 03 2018',
-        secretWord: 'hig',
-        id: 2,
-        imageCount: 10
-    }];
 
     constructor(private http: HttpClient) {
     }
@@ -38,20 +27,29 @@ export class UserService {
         return localStorage.getItem('serverUrl');
     }
 
-    public getUsers(): Observable<User[]> {
+    public getUsers(dbType: DB_TYPES): Observable<User[]> {
         const url = this.getBaseUrl();
         if (url) {
-            return this.http.get<User[]>('http://www.mocky.io/v2/5bd46dcb3200008600a3bdbd');
+            return this.http.get<User[]>(APIS(url, dbType).users.get);
         }
-        // return of(this.users);
     }
 
     public train(user: User) {
 
     }
 
-    public remove(user: User) {
+    public removeUser(user: User, dbType: DB_TYPES) {
+        const url = this.getBaseUrl();
+        if (url) {
+            return this.http.delete(APIS(url, dbType).users.remove + user.id);
+        }
+    }
 
+    addUser(user: User, dbType: DB_TYPES): Observable<any> {
+        const url = this.getBaseUrl();
+        if (url) {
+            return this.http.post(APIS(url, dbType).users.add, user);
+        }
     }
 
     public getImages(): Observable<Image[]> {

@@ -27,7 +27,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {WebcamModule} from 'ngx-webcam';
-import {FileUploadModule, GalleriaModule} from 'primeng/primeng';
+import {FileUploadModule, GalleriaModule, MessageService} from 'primeng/primeng';
 import {AddUserComponent} from './add-user/add-user.component';
 
 import {AppComponent} from './app.component';
@@ -48,11 +48,13 @@ import {CanDeactivateGuard} from './services/can-deactivate.guard';
 import {SettingsDialogComponent} from './settings-dialog/settings-dialog.component';
 import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
 import {UserFormComponent} from './add-user/user-form/user-form.component';
+import {MessagingService} from "./services/messaging.service";
+import {ToastModule} from "primeng/toast";
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-    {path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]}
+    {path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -104,8 +106,9 @@ const Routes: Routes = [
         MatSnackBarModule,
         MatBadgeModule,
         GalleriaModule,
+        ToastModule
     ],
-    providers: [AuthGuard, AuthService, CanDeactivateGuard],
+    providers: [AuthGuard, AuthService, CanDeactivateGuard, MessageService, MessagingService],
     bootstrap: [AppComponent],
     entryComponents:
         [ImageDialogComponent,
