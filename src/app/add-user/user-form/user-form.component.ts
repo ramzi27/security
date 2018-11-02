@@ -1,18 +1,19 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {MatExpansionPanel} from "@angular/material";
-import {Observable} from "rxjs";
 import {Router} from "@angular/router";
-import {CanDeactivateComponent} from "../../services/can-deactivate.guard";
+import {User} from "../../services/user";
+import {UserService} from "../../services/user.service";
+import {MessagingService} from "../../services/messaging.service";
 
 @Component({
     selector: 'app-user-form',
     templateUrl: './user-form.component.html',
     styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent implements OnInit, CanDeactivateComponent {
+export class UserFormComponent implements OnInit {
     startDate = new Date(1990, 0, 1);
-    LIST_TYPES = [{name: 'White List', value: 'whiteList'}, {name: 'Black List', value: 'blackList'}];
+    LIST_TYPES = [{name: 'White List', value: 'whitelist'}, {name: 'Black List', value: 'blacklist'}];
     showUpload = false;
     @ViewChild('f')
     ngForm: NgForm;
@@ -20,7 +21,7 @@ export class UserFormComponent implements OnInit, CanDeactivateComponent {
     @ViewChild('uploadPanel')
     uploadPanel: MatExpansionPanel;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private userService: UserService, private msgService: MessagingService) {
     }
 
     ngOnInit() {
@@ -29,12 +30,17 @@ export class UserFormComponent implements OnInit, CanDeactivateComponent {
     register() {
         const {type, date, name, secretWord, childNo, favoriteCar, favoriteCity} = this.ngForm.controls;
         this.isDone = true;
-        console.log(this.isDone);
-        const id = setTimeout(() => {
-            this.isDone = false;
-            clearTimeout(id);
-            this.ngForm.reset();
-        }, 30000);
+        const user = new User(name.value, date.value, secretWord.value, 0, childNo.value, 0, favoriteCity.value, favoriteCar.value);
+        this.userService.addUser(user, type.value).subscribe(value => {
+            this.msgService.showMsg('User Added', 'user was successfully added', 'success');
+            console.log(value);
+            const id = setTimeout(() => {
+                this.isDone = false;
+                clearTimeout(id);
+                this.ngForm.reset();
+            }, 30000);
+        });
+
     }
 
 
@@ -56,12 +62,5 @@ export class UserFormComponent implements OnInit, CanDeactivateComponent {
     close() {
         this.router.navigate(['/home']);
     }
-
-    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-        if (this.ngForm.valid)
-            return false;
-        return true;
-    }
-
 
 }

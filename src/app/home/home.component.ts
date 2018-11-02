@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
     }
 
     openAddUser() {
-        this.router.navigate(['/add-user']);
+        this.router.navigate(['/add-user'], {});
     }
 
 }

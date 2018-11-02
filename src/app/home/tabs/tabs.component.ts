@@ -3,7 +3,7 @@ import {MatDialog, MatTableDataSource} from '@angular/material';
 import {Subscription} from 'rxjs';
 import {CameraComponent} from '../../camera/camera.component';
 import {GalleryComponent} from '../../gallery/gallery.component';
-import {User} from '../../services/user';
+import {DB_TYPES, User} from '../../services/user';
 import {UserService} from '../../services/user.service';
 import {ImageDialogComponent} from './image-dialog/image-dialog.component';
 import {MenuEvents} from './tab-content/tab-content.component';
@@ -16,7 +16,7 @@ import {MenuEvents} from './tab-content/tab-content.component';
 export class TabsComponent implements OnInit, OnDestroy {
     isDataLoading = true;
     @Input()
-    dbType: string;
+    dbType: DB_TYPES;
     users: User[];
     tableDataSource: MatTableDataSource<User>;
     subscription: Subscription;
@@ -28,7 +28,7 @@ export class TabsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         setTimeout(() => {
-            this.subscription = this.usersService.getUsers().subscribe(value => {
+            this.subscription = this.usersService.getUsers(this.dbType).subscribe(value => {
                 this.users = value;
                 this.tableDataSource = new MatTableDataSource(value);
                 this.isDataLoading = false;
@@ -48,6 +48,7 @@ export class TabsComponent implements OnInit, OnDestroy {
         switch ($event) {
             case MenuEvents.delete:
                 this.users.splice(index, 1);
+                this.usersService.removeUser(user, this.dbType).subscribe(value => console.log(value));
                 this.tableDataSource = new MatTableDataSource(this.users);
                 break;
             case MenuEvents.upload:
