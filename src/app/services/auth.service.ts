@@ -23,7 +23,7 @@ export class AuthService {
 
     public logOut() {
         localStorage.clear();
-        this.router.navigate(['/login'], {replaceUrl: true});
+        this.router.navigate(['/main'], {replaceUrl: true});
     }
 
     public checkLogin() {

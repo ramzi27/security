@@ -1,0 +1,16 @@
+.dashboard-container {
+    height: 90%;
+}
+
+.card-container {
+    width: 250px;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+}
+
+.buttons-container {
+    height: 250px;
+}

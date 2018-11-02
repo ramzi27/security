@@ -17,6 +17,13 @@
                     Black List
                 </ng-template>
             </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="mr-2">live_tv</mat-icon>
+                    Preview
+                </ng-template>
+                <app-live-preview [showHeader]="false"></app-live-preview>
+            </mat-tab>
         </mat-tab-group>
     </div>
     <button mat-fab class="bg-primary ml-auto mr-4 mb-4" (click)="openAddUser()">

@@ -27,8 +27,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {WebcamModule} from 'ngx-webcam';
-import {FileUploadModule, GalleriaModule} from 'primeng/primeng';
+import {FileUploadModule, GalleriaModule, MessageService} from 'primeng/primeng';
+import {ToastModule} from 'primeng/toast';
 import {AddUserComponent} from './add-user/add-user.component';
+import {UserFormComponent} from './add-user/user-form/user-form.component';
+import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
 
 import {AppComponent} from './app.component';
 import {CameraComponent} from './camera/camera.component';
@@ -41,16 +44,18 @@ import {ImageDialogComponent} from './home/tabs/image-dialog/image-dialog.compon
 import {TabContentComponent} from './home/tabs/tab-content/tab-content.component';
 import {TabsComponent} from './home/tabs/tabs.component';
 import {ImageUploaderComponent} from './image-uploader/image-uploader.component';
+import {LivePreviewComponent} from './live-preview/live-preview.component';
 import {LoginComponent} from './login/login.component';
+import {MainComponent} from './main/main.component';
 import {AuthGuard} from './services/auth-guard';
 import {AuthService} from './services/auth.service';
 import {CanDeactivateGuard} from './services/can-deactivate.guard';
 import {SettingsDialogComponent} from './settings-dialog/settings-dialog.component';
-import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
-import {UserFormComponent} from './add-user/user-form/user-form.component';
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
+    {path: 'preview', component: LivePreviewComponent},
+    {path: 'main', component: MainComponent},
     {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     {path: 'add-user', component: AddUserComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateGuard]}
 ];
@@ -73,6 +78,8 @@ const Routes: Routes = [
         GalleryComponent,
         AlertDialogComponent,
         UserFormComponent,
+        MainComponent,
+        LivePreviewComponent,
     ],
     imports: [
         BrowserModule,
@@ -104,8 +111,9 @@ const Routes: Routes = [
         MatSnackBarModule,
         MatBadgeModule,
         GalleriaModule,
+        ToastModule
     ],
-    providers: [AuthGuard, AuthService, CanDeactivateGuard],
+    providers: [AuthGuard, AuthService, CanDeactivateGuard, MessageService],
     bootstrap: [AppComponent],
     entryComponents:
         [ImageDialogComponent,

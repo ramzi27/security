@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
+import {Subscription} from 'rxjs';
+import {AlertDialogComponent} from '../alert-dialog/alert-dialog.component';
 import {AuthService} from '../services/auth.service';
+import {EventsService} from '../services/events.service';
 import {SettingsDialogComponent} from '../settings-dialog/settings-dialog.component';
-import {EventsService} from "../services/events.service";
-import {Subscription} from "rxjs";
-import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 
 @Component({
     selector: 'app-header',
@@ -14,7 +14,9 @@ import {AlertDialogComponent} from "../alert-dialog/alert-dialog.component";
 export class HeaderComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
-    navBarOpened = false;
+    @Input()
+    showExtras = true;
+
     constructor(private authService: AuthService,
                 public matDialog: MatDialog,
                 private eventService: EventsService
@@ -22,6 +24,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        if (!this.showExtras) {
+            return;
+        }
         this.subscription = this.eventService.getAlerts().subscribe(value => {
             console.log(value);
             if (value === 3) {
@@ -39,7 +44,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 
     checkAlerts() {

@@ -1,0 +1,7 @@
+<app-header *ngIf="showHeader" [showExtras]="false"></app-header>
+<div class="live-container center-content">
+    <mat-spinner *ngIf="isLoading;else liveContainer"></mat-spinner>
+    <ng-template #liveContainer>
+        <img [src]="getLiveUrl()">
+    </ng-template>
+</div>

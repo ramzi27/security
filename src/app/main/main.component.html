@@ -1,0 +1,21 @@
+<div class="w-100 h-100">
+    <app-header [showExtras]="false"></app-header>
+    <div class="center-content dashboard-container shadow-lg">
+        <mat-card class="card-container">
+            <mat-card-header>
+                <mat-card-title>
+                    <h2 class="text-primary text-center">
+                        Dashboard
+                    </h2></mat-card-title>
+                <mat-card-subtitle><h4 class="text-secondary text-center">Choose Your Role</h4></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="d-flex justify-content-around buttons-container align-items-center flex-column">
+                    <img src="../../assets/security.png" class="image">
+                    <button (click)="adminLogin()" type="button" class="btn btn-success">Login As Admin</button>
+                    <button (click)="userLogin()" type="button" class="btn btn-info">Login As User</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

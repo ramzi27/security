@@ -28,6 +28,11 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.authService.checkLogin()) {
+            this.router.navigate(['/home'], {replaceUrl: true});
+        } else {
+            this.router.navigate(['/login'], {replaceUrl: true});
+        }
     }
 
     login() {
@@ -36,7 +41,7 @@ export class LoginComponent implements OnInit {
             this.isLoading = false;
             logIn();
             clearTimeout(timerId);
-        }, 2000);
+        }, 1000);
         const logIn = () => {
             const user = this.username.value;
             const pass = this.password.value;
