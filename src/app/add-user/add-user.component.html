@@ -1,4 +1,15 @@
 <div>
     <app-header></app-header>
-    <app-user-form></app-user-form>
+    <div class="mt-2">
+        <p-steps [model]="steps" [readonly]="isReadOnly" [activeIndex]="activeIndex"
+                 (activeIndexChange)="activeIndex = $event">
+            <router-outlet></router-outlet>
+        </p-steps>
+        <div class="w-100">
+            <app-user-form *ngIf="activeIndex === 0" (userEmitter)="uploadImage($event)"></app-user-form>
+            <div *ngIf="activeIndex === 1" class="w-50 m-auto">
+                <app-image-uploader [uploadUrl]="imageUrl"></app-image-uploader>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FileUpload} from '../../../node_modules/primeng/primeng';
+import {UserService} from '../services/user.service';
 
 @Component({
     selector: 'app-image-uploader',
@@ -12,7 +13,7 @@ export class ImageUploaderComponent implements OnInit {
     @ViewChild('fileUploader')
     fileUploader: FileUpload;
 
-    constructor() {
+    constructor(private userService: UserService) {
     }
 
     ngOnInit() {
@@ -20,5 +21,14 @@ export class ImageUploaderComponent implements OnInit {
 
     removeFile(index) {
         this.fileUploader.remove(null, index);
+    }
+
+    async uploadImages(files: File[]) {
+        console.log('uploading');
+        const images: Blob[] = [];
+        files.forEach(value => {
+            images.push(value.slice());
+        });
+        await this.userService.uploadImageFromBlob(images, this.uploadUrl);
     }
 }

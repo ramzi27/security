@@ -9,16 +9,10 @@ export class User {
     imageCount?: number;
     favCity: string;
     favCarType: string;
+    dbType?: DB_TYPES;
 
-
-    constructor(name: string, birthDate: string, secretWord: string, id: number, numOfChildren: number, imageCount: number, favCity: string, favCarType: string) {
-        this.name = name;
-        this.birthDate = birthDate;
-        this.secretWord = secretWord;
+    constructor(id: number, dbType: DB_TYPES) {
         this.id = id;
-        this.numOfChildren = numOfChildren;
-        this.imageCount = imageCount;
-        this.favCity = favCity;
-        this.favCarType = favCarType;
+        this.dbType = dbType;
     }
 }

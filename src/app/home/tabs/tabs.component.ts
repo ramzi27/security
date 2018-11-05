@@ -29,7 +29,10 @@ export class TabsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         setTimeout(() => {
             this.subscription = this.usersService.getUsers(this.dbType).subscribe(value => {
-                this.users = value;
+                this.users = value.map(user => {
+                    user.dbType = this.dbType;
+                    return user;
+                });
                 this.tableDataSource = new MatTableDataSource(value);
                 this.isDataLoading = false;
             });
@@ -48,15 +51,11 @@ export class TabsComponent implements OnInit, OnDestroy {
         switch ($event) {
             case MenuEvents.delete:
                 this.users.splice(index, 1);
-                this.usersService.removeUser(user, this.dbType).subscribe(value => console.log(value));
+                this.usersService.removeUser(user).subscribe(value => console.log(value));
                 this.tableDataSource = new MatTableDataSource(this.users);
                 break;
             case MenuEvents.upload:
-                this.dialog.open(ImageDialogComponent, {data: {url: 'asda', user}});
-                // todo upload image
-                break;
-            case MenuEvents.train:
-                // todo train
+                this.dialog.open(ImageDialogComponent, {data: user});
                 break;
             case MenuEvents.camera:
                 this.dialog.open(CameraComponent, {data: user});

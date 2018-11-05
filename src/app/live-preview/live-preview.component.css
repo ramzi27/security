@@ -1,3 +1,14 @@
 .live-container {
     height: 90%;
 }
+
+.mat-icon.mat-warn {
+    font-size: 60px;
+    position: relative;
+    bottom: 20px;
+    right: 25px;
+}
+
+.mat-icon {
+    font-size: 60px;
+}

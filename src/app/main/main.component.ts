@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
+import {SettingsDialogComponent} from '../settings-dialog/settings-dialog.component';
 
 @Component({
     selector: 'app-main',
@@ -8,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private matDialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -19,6 +21,14 @@ export class MainComponent implements OnInit {
     }
 
     userLogin() {
-        this.router.navigate(['/preview']);
+        const url = localStorage.getItem('serverUrl');
+        if (!url) {
+            const sub = this.matDialog.open(SettingsDialogComponent).afterClosed().subscribe(value => {
+                sub.unsubscribe();
+                this.router.navigate(['/preview']);
+            });
+        } else {
+            this.router.navigate(['/preview']);
+        }
     }
 }

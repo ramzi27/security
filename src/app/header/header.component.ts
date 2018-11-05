@@ -1,7 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Subscription} from 'rxjs';
-import {AlertDialogComponent} from '../alert-dialog/alert-dialog.component';
 import {AuthService} from '../services/auth.service';
 import {EventsService} from '../services/events.service';
 import {SettingsDialogComponent} from '../settings-dialog/settings-dialog.component';
@@ -27,12 +26,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (!this.showExtras) {
             return;
         }
-        this.subscription = this.eventService.getAlerts().subscribe(value => {
-            console.log(value);
-            if (value === 3) {
-                this.matDialog.open(AlertDialogComponent, {data: 'http://img.timeinc.net/time/daily/2010/1011/poy_nomination_agassi.jpg'});
-            }
-        });
+        // this.subscription = this.eventService.getAlerts().subscribe(value => {
+        //     console.log(value);
+        //     if (value === 3) {
+        //         this.matDialog.open(AlertDialogComponent, {data: 'http://img.timeinc.net/time/daily/2010/1011/poy_nomination_agassi.jpg'});
+        //     }
+        // });
     }
 
     logOut() {

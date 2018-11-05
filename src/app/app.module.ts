@@ -27,9 +27,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import {WebcamModule} from 'ngx-webcam';
-import {FileUploadModule, GalleriaModule, MessageService} from 'primeng/primeng';
+import {FileUploadModule, GalleriaModule, MessageService, StepsModule} from 'primeng/primeng';
 import {ToastModule} from 'primeng/toast';
 import {AddUserComponent} from './add-user/add-user.component';
+import {UserFormComponent} from './add-user/user-form/user-form.component';
+import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
 
 import {AppComponent} from './app.component';
 import {CameraComponent} from './camera/camera.component';
@@ -47,10 +49,7 @@ import {LoginComponent} from './login/login.component';
 import {MainComponent} from './main/main.component';
 import {AuthGuard} from './services/auth-guard';
 import {AuthService} from './services/auth.service';
-import {CanDeactivateGuard} from './services/can-deactivate.guard';
 import {SettingsDialogComponent} from './settings-dialog/settings-dialog.component';
-import {AlertDialogComponent} from './alert-dialog/alert-dialog.component';
-import {UserFormComponent} from './add-user/user-form/user-form.component';
 
 const Routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -111,12 +110,14 @@ const Routes: Routes = [
         MatSnackBarModule,
         MatBadgeModule,
         GalleriaModule,
-        ToastModule
+        ToastModule,
+        StepsModule
     ],
-    providers: [AuthGuard, AuthService, CanDeactivateGuard, MessageService],
+    providers: [AuthGuard, AuthService, MessageService],
     bootstrap: [AppComponent],
     entryComponents:
-        [ImageDialogComponent,
+        [
+            ImageDialogComponent,
             SettingsDialogComponent,
             CameraComponent,
             GalleryComponent,

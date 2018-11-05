@@ -15,9 +15,13 @@ export class AuthService {
         localStorage.setItem('isLogged', 'true');
         const url = localStorage.getItem('serverUrl');
         if (!url) {
-            this.matDialog.open(SettingsDialogComponent);
+            const sub = this.matDialog.open(SettingsDialogComponent).afterClosed().subscribe(value => {
+                this.router.navigate(['/home'], {replaceUrl: true});
+                sub.unsubscribe();
+            });
+        } else {
+            this.router.navigate(['/home'], {replaceUrl: true});
         }
-        this.router.navigate(['/home'], {replaceUrl: true});
 
     }
 

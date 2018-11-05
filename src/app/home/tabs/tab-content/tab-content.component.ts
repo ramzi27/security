@@ -1,10 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatTableDataSource} from '@angular/material';
 import {User} from '../../../services/user';
-import {MatTableDataSource} from "@angular/material";
 
 export enum MenuEvents {
     delete,
-    train,
     upload,
     camera,
     images

@@ -2,3 +2,9 @@
     min-width: 100%;
 }
 
+.add-button {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+

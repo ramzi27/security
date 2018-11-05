@@ -1,7 +1,8 @@
 <div class="d-flex flex-column h-100 w-100">
     <app-header></app-header>
     <div class="d-flex flex-fill ml-5">
-        <mat-tab-group mat-stretch-tab class="tab-group-container">
+        <mat-tab-group (selectedIndexChange)="changeIndex($event)" mat-stretch-tab
+                       class="tab-group-container">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="mr-2">lock_open</mat-icon>
@@ -25,11 +26,11 @@
                     <mat-icon class="mr-2">live_tv</mat-icon>
                     Preview
                 </ng-template>
-                <app-live-preview [showHeader]="false"></app-live-preview>
+                <app-live-preview class="mt-3" *ngIf="selectedIndex === 2" [showHeader]="false"></app-live-preview>
             </mat-tab>
         </mat-tab-group>
+        <button mat-fab class="bg-primary add-button" (click)="openAddUser()">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
-    <button mat-fab class="bg-primary ml-auto mr-4 mb-4" (click)="openAddUser()">
-        <mat-icon>add</mat-icon>
-    </button>
 </div>

@@ -1,11 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import APIS from '../../../services/api';
 import {User} from '../../../services/user';
 
-export interface DialogData {
-    url: string;
-    user: User;
-}
 
 @Component({
     selector: 'app-image-dialog',
@@ -16,13 +13,14 @@ export class ImageDialogComponent implements OnInit {
     uploadUrl: string;
     user: User;
 
-    constructor(public matDialogRef: MatDialogRef<ImageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    constructor(public matDialogRef: MatDialogRef<ImageDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: User) {
     }
 
     ngOnInit() {
         this.matDialogRef.disableClose = true;
-        this.uploadUrl = this.data.url;
-        this.user = this.data.user;
+        const url = localStorage.getItem('serverUrl');
+        this.uploadUrl = APIS(url, this.data).image.upload;
+        this.user = this.data;
     }
 
     closeDialog() {

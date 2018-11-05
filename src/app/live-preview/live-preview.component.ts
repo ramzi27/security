@@ -1,39 +1,50 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {SettingsDialogComponent} from '../settings-dialog/settings-dialog.component';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {EventsService} from '../services/events.service';
 
 @Component({
     selector: 'app-live-preview',
     templateUrl: './live-preview.component.html',
     styleUrls: ['./live-preview.component.css']
 })
-export class LivePreviewComponent implements OnInit {
+export class LivePreviewComponent implements OnInit, OnDestroy {
     isLoading = true;
     @Input()
     showHeader = true;
+    audio = new Audio('../../../assets/warning.mp3');
 
-    constructor(public matDialog: MatDialog) {
+    constructor(private eventService: EventsService, private router: Router) {
     }
 
     ngOnInit() {
-        const url = localStorage.getItem('serverUrl');
-        if (!url) {
-            this.matDialog.open(SettingsDialogComponent).afterClosed().subscribe(value => {
-                setTimeout(() => {
-                    this.isLoading = false;
-                }, 1500);
-            });
-        } else {
-            setTimeout(() => {
-                this.isLoading = false;
-            }, 1500);
-        }
+        this.eventService.startStream();
+        const id = setTimeout(() => {
+            this.isLoading = false;
+            clearTimeout(id);
+        }, 1500);
     }
 
     getLiveUrl() {
         const url = localStorage.getItem('serverUrl');
-        if (url) { // todo change url
+        if (url) {
             return url + 'video_feed';
+        }
+    }
+
+    stop() {
+        this.eventService.stopStream();
+    }
+
+    reload() {
+        this.router.navigate(['/preview']);
+    }
+
+    ngOnDestroy(): void {
+        console.log('destroyed', this.isLoading);
+        this.audio.pause();
+        this.audio.remove();
+        if (!this.isLoading) {
+            this.eventService.stopStream();
         }
     }
 }
