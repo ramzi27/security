@@ -1,6 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {EventsService} from '../services/events.service';
+import {stream} from "../services/api";
 
 @Component({
     selector: 'app-live-preview',
@@ -27,7 +28,7 @@ export class LivePreviewComponent implements OnInit, OnDestroy {
     getLiveUrl() {
         const url = localStorage.getItem('serverUrl');
         if (url) {
-            return url + 'video_feed';
+            return stream(url).live;
         }
     }
 

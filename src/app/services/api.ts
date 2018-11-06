@@ -14,5 +14,13 @@ const APIS = (baseUrl: string, user: User) => {
         }
     };
 };
+export const stream = (baseUrl: string) => {
+    return {
+        live: baseUrl + 'video_feed',
+        stop: '',
+        start: '',
+        reload_model: ''
+    };
+};
 
 export default APIS;
