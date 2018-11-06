@@ -8,7 +8,7 @@ import APIS from '../services/api';
     styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-    steps: MenuItem[] = [{label: 'Fill User Information'}, {label: 'upload images'}];
+    steps: MenuItem[] = [{label: 'Fill User Information'}, {label: 'Upload Images'}, {label: 'Finish'}];
     activeIndex = 0;
     imageUrl = '';
     isReadOnly = true;
@@ -26,5 +26,11 @@ export class AddUserComponent implements OnInit {
         }
         this.isReadOnly = false;
         this.activeIndex = 1;
+    }
+
+    goToFinish() {
+        this.activeIndex = 2;
+        //todo reload model when response come back go to home page
+
     }
 }
